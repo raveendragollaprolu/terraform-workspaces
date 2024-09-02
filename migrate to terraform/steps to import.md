@@ -1,11 +1,13 @@
-#FOR EXAMPLE WE NEED TO MIGRATE OUR INFRASTUCTURE AWS TO TERRAFORM MANAGED SERVICE.
+# MIGRATE RESOURCES AWS TO TERRAFORM MANAGED:
+
+## FOR EXAMPLE WE NEED TO MIGRATE OUR INFRASTUCTURE AWS TO TERRAFORM MANAGED SERVICE.
 example:if you have infrastucture already in aws platform, lets assume you have created aws ec2 using awscli,cloud formation and now your organization moving their infrastucture to terraform managed service.
 
 So, We need to migrate the infrastructure. 
 
-#STEP1:
+# STEP1:
 
-**create main.tf 
+**create main.tf**
 In the main.tf ,write below script (change instance-id and insatance-name if required.
 ```
 provider "aws" {
@@ -19,7 +21,7 @@ import {
 }
 ```
 
-#STEP2:
+# STEP2:
 We need to Initilize the main.tf fiel  using below command
 
 ```
@@ -32,8 +34,8 @@ terraform plan -generate-config-out=generate_resource.tf
 The above command will generate the generate_resource.tf file(you can name it as what you like)
 Then open generate_resource.tf file and copy resorces
 
-#step3:
-We need to add above copied resources in the main.tf file
+# STEP3:
+**We need to add above copied resources in the main.tf file**
 
 ```
 provider "aws" {
@@ -124,10 +126,10 @@ resource "aws_instance" "example1" {
 }
 ```
 Above data in my case ,you may have another data for sure
-** detele the generate_resoure.tf file**
+**detele the generate_resoure.tf file**
 
 
-**The final step is : Run below command **
+## The final step is : Run below command
 ```
 terraform import aws_instance.example1 i-08f1ec9539c68f236  #example1(instance-name) and i-08f1ec9539c68f236(instance-id)
 ```
